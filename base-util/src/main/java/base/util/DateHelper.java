@@ -46,12 +46,22 @@ public class DateHelper {
         return date;
     }
 
-    public static String date2dateString(Date date) {
+    /**
+     * covert to yyyy-MM-dd string
+     * @param date
+     * @return
+     */
+    public static String toDateString(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(date);
     }
 
-    public static String date2timeString(Date date) {
+    /**
+     * covert to yyyy-MM-dd HH:mm:ss string
+     * @param date
+     * @return
+     */
+    public static String toTimeString(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(date);
     }
