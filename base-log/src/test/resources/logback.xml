@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- debug:启动时输出配置加载信息; scan:默认自动扫描配置文件是否有修改; scanPeriod:默认为每分钟-->
+<configuration debug="false" scan="true" scanPeriod="30 seconds">
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss}][%-5level][%logger{0}:%L] - %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="base-logback" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- ① -->
+        <file>logs_/base-logback.log</file>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss}][%-5level][%logger:%L] - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs_/base-logback.log.%d{yyyy-MM-dd}</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <!-- name指定包生成日志的规则，未指定的遵循root的规则 -->
+    <logger name="base.log.logger" level="ERROR" >
+        <appender-ref ref="base-logback"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="console"/>
+    </root>
+</configuration>
+
+<!-- ①  -->
+<!--
+  -  ###  web project  ||  jar project###
+  -  deploy to tomcat default create in tomcat\bin\  ||  the same directory as src
+  -  <file>../logs_/base-logback.log</file> ||  <file>logs_/base-logback.log</file>
+  - '/' is the project of disk root (such as f:/)
+-->
