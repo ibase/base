@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by Doing on 2016/4/5.
+ * Created by base on 2016/4/5.
  */
 public class TestLogback_ {
 

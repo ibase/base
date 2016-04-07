@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 /**
- * Created by Doing on 2016/4/5.
+ * Created by base on 2016/4/5.
  */
 public class TestLog4j_ {
 
