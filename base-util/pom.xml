@@ -15,6 +15,7 @@
     <junit.version>4.12</junit.version>
     <jackson.version>2.6.3</jackson.version>
     <fastjson.version>1.2.7</fastjson.version>
+    <httpclient.version>4.5</httpclient.version>
   </properties>
 
   <dependencies>
@@ -37,6 +38,13 @@
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
       <version>${fastjson.version}</version>
+    </dependency>
+
+    <!-- httpclient -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>${httpclient.version}</version>
     </dependency>
   </dependencies>
 </project>

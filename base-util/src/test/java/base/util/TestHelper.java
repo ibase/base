@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -30,11 +31,34 @@ public class TestHelper {
         System.out.println(sdf.format(new Date(datems)));//date1 < x < date2
 
         //date2dateString
-        System.out.println(DateHelper.date2dateString(date1));//2016-01-01
+        System.out.println(DateHelper.toDateString(date1));//2016-01-01
 
         //date2timeString
-        System.out.println(DateHelper.date2timeString(date1));//2016-01-01 00:00:00
+        System.out.println(DateHelper.toTimeString(date1));//2016-01-01 00:00:00
     }
+
+    @Test
+    public void testHttpClient() {
+        String url = "http://www.baidu.com";
+        try {
+            System.out.println(HttpClientHelper.getHTML(url,"utf-8"));
+        } catch (Exception e) {
+            System.out.println("it has an exception0...");
+        }
+        url = "http://www.google.com";
+        try {
+            System.out.println(HttpClientHelper.getHTML(url,"utf-8"));
+        } catch (Exception e) {
+            System.out.println("it has an exception1...");
+        }
+        url = "http://www.google.com";
+        try {
+            System.out.println(HttpClientHelper.getHTML(url,"utf-8",2000,2000));
+        } catch (Exception e) {
+            System.out.println("it has an exception2...");
+        }
+    }
+
 
     @Test
     public void testHttp() throws Exception{
