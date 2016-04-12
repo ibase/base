@@ -47,9 +47,9 @@ public class JsonHelper {
         return null;
     }
 
-    public static final byte CASE_FASTJSON_NOT_SHOW_NULL = 0x01;
-    public static final byte CASE_FASTJSON_SHOW_NULL = 0x02;
-    public static final byte CASE_FASTJSON_SHOW_NULL_TO_DEFAULT = 0x03;
+    public static final byte _CASE_FASTJSON_NOT_SHOW_NULL = 0x01;
+    public static final byte _CASE_FASTJSON_SHOW_NULL = 0x02;
+    public static final byte _CASE_FASTJSON_SHOW_NULL_TO_DEFAULT = 0x03;
 
     /** Fastjson*/
 
@@ -61,9 +61,9 @@ public class JsonHelper {
      */
     public static String obj2JsonstrByFastjson(Object object, byte _case) {
         switch (_case){
-            case JsonHelper.CASE_FASTJSON_SHOW_NULL:
+            case JsonHelper._CASE_FASTJSON_SHOW_NULL:
                 return JSON.toJSONString(object, SerializerFeature.WriteMapNullValue);
-            case JsonHelper.CASE_FASTJSON_SHOW_NULL_TO_DEFAULT:
+            case JsonHelper._CASE_FASTJSON_SHOW_NULL_TO_DEFAULT:
                 SerializerFeature[] features = {SerializerFeature.WriteMapNullValue,SerializerFeature.WriteNullBooleanAsFalse,
                         SerializerFeature.WriteNullStringAsEmpty,SerializerFeature.WriteNullNumberAsZero,SerializerFeature.WriteNullListAsEmpty};
                 return JSON.toJSONString(object,features);

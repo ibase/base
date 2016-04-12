@@ -8,11 +8,11 @@ import java.util.Random;
 public class RandomHelper {
 
     /** 小写 */
-    public static final byte CASE_UPPER = 0x01;
+    public static final byte _CASE_UPPER = 0x01;
     /** 大写 */
-    public static final byte CASE_LOWER = 0x02;
+    public static final byte _CASE_LOWER = 0x02;
     /** 所有 */
-    public static final byte CASE_ALL = 0x03;
+    public static final byte _CASE_ALL = 0x03;
 
     /**
      * 随机生成指定长度的数字串
@@ -40,12 +40,12 @@ public class RandomHelper {
 
         Random random = new Random();
         switch (_case){
-            case RandomHelper.CASE_LOWER:
+            case RandomHelper._CASE_LOWER:
                 for (int i = 0; i < len; i++) {
                     sb.append((char) (random.nextInt(26)+97));
                 }
                 break;
-            case RandomHelper.CASE_UPPER :
+            case RandomHelper._CASE_UPPER :
                 for (int i = 0; i < len; i++) {
                     sb.append((char) (random.nextInt(26)+65));
                 }
