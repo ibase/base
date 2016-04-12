@@ -7,8 +7,8 @@ import java.security.MessageDigest;
  */
 public class MD5Helper {
 
-    public static final byte CASE_UPPER = 0x01;
-    public static final byte CASE_LOWER = 0x02;
+    public static final byte _CASE_UPPER = 0x01;
+    public static final byte _CASE_LOWER = 0x02;
     public static final char[] HEX = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
     public static String getMD5OfString(String value, byte _case){
@@ -52,7 +52,7 @@ public class MD5Helper {
         tempArr[1] = HEX[mByte & 0X0F];
 
         String s = new String(tempArr);
-        if(_case == MD5Helper.CASE_UPPER){
+        if(_case == MD5Helper._CASE_UPPER){
             return s.toUpperCase();
         }
         return s;

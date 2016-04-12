@@ -11,16 +11,19 @@ import java.net.URL;
  */
 public class HttpHelper {
 
+    public static final String _CASE_GET = "GET";
+    public static final String _CASE_POST = "POST";
     /**
      * 获取Http请求返回的信息
      * @param requestUrl
      * @return
      * @throws Exception
      */
-    public static String getInfoByRequestUrl(String requestUrl) throws Exception {
+    public static String getInfoByRequestUrl(String requestUrl,String requestMethod) throws Exception {
 
         URL url = new URL(requestUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod(requestMethod);
         connection.connect();
         // 对应的字符编码转换
         Reader reader = new InputStreamReader(connection.getInputStream(), "UTF-8");

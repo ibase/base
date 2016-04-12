@@ -64,7 +64,7 @@ public class TestHelper {
     public void testHttp() throws Exception{
         //getInfoByRequestUrl
         String url = "http://www.baidu.com";
-        System.out.println(HttpHelper.getInfoByRequestUrl(url));
+        System.out.println(HttpHelper.getInfoByRequestUrl(url,HttpHelper._CASE_GET));
     }
 
     @Test
@@ -76,9 +76,9 @@ public class TestHelper {
 
         //obj2JsonstrByJackson
         System.out.println(JsonHelper.obj2JsonstrByJackson(user));
-        System.out.println(JsonHelper.obj2JsonstrByFastjson(user, JsonHelper.CASE_FASTJSON_NOT_SHOW_NULL));
-        System.out.println(JsonHelper.obj2JsonstrByFastjson(user, JsonHelper.CASE_FASTJSON_SHOW_NULL));
-        System.out.println(JsonHelper.obj2JsonstrByFastjson(user, JsonHelper.CASE_FASTJSON_SHOW_NULL_TO_DEFAULT));
+        System.out.println(JsonHelper.obj2JsonstrByFastjson(user, JsonHelper._CASE_FASTJSON_NOT_SHOW_NULL));
+        System.out.println(JsonHelper.obj2JsonstrByFastjson(user, JsonHelper._CASE_FASTJSON_SHOW_NULL));
+        System.out.println(JsonHelper.obj2JsonstrByFastjson(user, JsonHelper._CASE_FASTJSON_SHOW_NULL_TO_DEFAULT));
 
         //jsonstr2ObjByJackson
         String jsonstr = JsonHelper.obj2JsonstrByJackson(user);
@@ -98,8 +98,8 @@ public class TestHelper {
     @Test
     public void testMD5() {
         //getMD5OfString
-        System.out.println(MD5Helper.getMD5OfString("123456", MD5Helper.CASE_LOWER));
-        System.out.println(MD5Helper.getMD5OfString("123456", MD5Helper.CASE_UPPER));
+        System.out.println(MD5Helper.getMD5OfString("123456", MD5Helper._CASE_LOWER));
+        System.out.println(MD5Helper.getMD5OfString("123456", MD5Helper._CASE_UPPER));
     }
 
     @Test
@@ -110,9 +110,9 @@ public class TestHelper {
         System.out.println(RandomHelper.randomNumbers(12));//132379024259
 
         //randomLetters
-        System.out.println(RandomHelper.randomLetters(8, RandomHelper.CASE_ALL));       //QiJIYOBU
-        System.out.println(RandomHelper.randomLetters(8, RandomHelper.CASE_LOWER));//zhyjwlnm
-        System.out.println(RandomHelper.randomLetters(8, RandomHelper.CASE_UPPER));   //KWGENXLV
+        System.out.println(RandomHelper.randomLetters(8, RandomHelper._CASE_ALL));       //QiJIYOBU
+        System.out.println(RandomHelper.randomLetters(8, RandomHelper._CASE_LOWER));//zhyjwlnm
+        System.out.println(RandomHelper.randomLetters(8, RandomHelper._CASE_UPPER));   //KWGENXLV
     }
 
     @Test
