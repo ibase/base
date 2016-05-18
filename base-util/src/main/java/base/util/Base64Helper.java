@@ -85,51 +85,10 @@ public class Base64Helper {
     }
 
     public static byte[] decode(char[] chars) {
+        return decode(chars, 0, chars.length);
+    }
 
-        int charsLen = chars.length;
-        if (charsLen == 0) {
-            return new byte[0];
-        }
-
-        int sIx = 0, eIx = charsLen - 1;
-
-        while (sIx < eIx && DECODE_BYTES[chars[sIx] & 0xff] < 0)
-            sIx++;
-
-        while (eIx > 0 && DECODE_BYTES[chars[eIx] & 0xff] < 0)
-            eIx--;
-
-        int pad = chars[eIx] == '=' ? (chars[eIx - 1] == '=' ? 2 : 1) : 0;
-        int cCnt = eIx - sIx + 1;
-        int sepCnt = charsLen > 76 ? (chars[76] == '\r' ? cCnt / 78 : 0) << 1 : 0;
-
-        int len = ((cCnt - sepCnt) * 6 >> 3) - pad;
-        byte[] dArr = new byte[len];
-
-        int d = 0;
-        for (int cc = 0, eLen = (len / 3) * 3; d < eLen;) {
-            int i = 0;
-            for (int j = 0; sIx <= eIx - pad; j++)
-                i |= DECODE_BYTES[chars[sIx++]] << (18 - j * 6);
-
-            for (int r = 16; d < len; r -= 8)
-                dArr[d++] = (byte) (i >> r);
-
-            if (sepCnt > 0 && ++cc == 19) {
-                sIx += 2;
-                cc = 0;
-            }
-        }
-
-        if (d < len) {
-            int i = 0;
-            for (int j = 0; sIx <= eIx - pad; j++)
-                i |= DECODE_BYTES[chars[sIx++]] << (18 - j * 6);
-
-            for (int r = 16; d < len; r -= 8)
-                dArr[d++] = (byte) (i >> r);
-        }
-
-        return dArr;
+    public static byte[] decode(String string) {
+        return decode(string.toCharArray(), 0, string.length());
     }
 }
