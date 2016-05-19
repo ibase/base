@@ -16,8 +16,15 @@ public class TestHelper {
 
     @Test
     public void testBase64() throws Exception{
-        System.out.println(Base64Helper.encode("hello你好啊world".getBytes("UTF-8")));
-        System.out.println(new String(Base64Helper.decode("aGVsbG/kvaDlpb3llYp3b3JsAA=="),"UTF-8"));
+        String srcStr1 = "hello你好啊world";
+        String encStr1 = Base64Helper.encode(srcStr1.getBytes());
+        String decStr1 = new String(Base64Helper.decode(encStr1));
+        System.out.println("srcStr1: "+srcStr1+"\r\nencStr1: "+encStr1+"\r\ndecStr1: "+decStr1);
+
+        String srcStr2 = "hello你好啊world";
+        String encStr2 = Base64Helper.encode(srcStr2.getBytes("UTF-8"));
+        String decStr2 = new String(Base64Helper.decode(encStr2),"UTF-8");
+        System.out.println("\r\nsrcStr2: "+srcStr2+"\r\nencStr: "+encStr2+"\r\ndecStr2: "+decStr2);
     }
 
     @Test

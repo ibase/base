@@ -22,8 +22,7 @@ public class Base64Helper {
     /**
      * string source to bytes
      *
-     * 有行分隔符则必须是76个字符一行,或者无行分隔符,所有数据在一行
-     * 行分隔符必须是"\r\n"
+     * 有行分隔符(行分隔符必须是"\r\n")则必须是76个字符一行,或者无行分隔符,所有数据在一行
      * 字符串内部不可有不规则字符,首尾可有(方法开始部分做了处理)
      * @param chars 源字符数组
      * @param offset 偏移量
@@ -113,32 +112,14 @@ public class Base64Helper {
         if (index < srcLen) {
             //剩余解码字节个数, 补'='(字节)个数
             int modCnt = srcLen - index, equCnt = 3 - modCnt;
-            int i = 0;
+            int i = 0x00ffffff;
             for (int j = 0; j < modCnt; j++)
-                i |= (bytes[index++] << (24 - j * 8)) & 0xff;
-            for (int j = 0; j <= modCnt; j++) {
+                i &= (bytes[index++] << (16 - j << 3));
+            for (int j = 0; j <= modCnt; j++)
                 sb.append(ENCODE_CHARS[(i >> (18 - j * 6)) & 0x3f]);
-            }
             for (int j = 0; j < equCnt; j++) {
                 sb.append('=');
             }
-//            for (int j = 0; j < modCnt; j++)
-//                i |= (bytes[index++] << (j * 8)) & 0xff;
-//            for (int j = 0; j < modCnt; j++) {
-//                sb.append(ENCODE_CHARS[(i >> (j * 6)) & 0x3f]);
-//            }
-//            for (int j = 0; j < equCnt; j++) {
-//                sb.append('=');
-//            }
-
-//            for (int j = 0; j < 4; j++) {
-//                //sb.append(ENCODE_CHARS[(i >> (j * 6)) & 0x3f]);
-//                int temp = (i >> (j * 6)) & 0x3f;
-//                if(temp==0)
-//                    sb.append('=');
-//                else
-//                    sb.append(ENCODE_CHARS[temp]);
-//            }
         }
 
         return sb.toString();
