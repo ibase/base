@@ -15,6 +15,12 @@ import java.util.Date;
 public class TestHelper {
 
     @Test
+    public void testBase64() throws Exception{
+        System.out.println(Base64Helper.encode("hello你好啊world".getBytes("UTF-8")));
+        System.out.println(new String(Base64Helper.decode("aGVsbG/kvaDlpb3llYp3b3JsAA=="),"UTF-8"));
+    }
+
+    @Test
     public void testDate() throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date1 = sdf.parse("2016-01-01 00:00:00");

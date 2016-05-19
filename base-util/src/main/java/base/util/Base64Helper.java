@@ -20,6 +20,8 @@ public class Base64Helper {
     }
 
     /**
+     * string source to bytes
+     *
      * 有行分隔符则必须是76个字符一行,或者无行分隔符,所有数据在一行
      * 行分隔符必须是"\r\n"
      * 字符串内部不可有不规则字符,首尾可有(方法开始部分做了处理)
@@ -54,10 +56,9 @@ public class Base64Helper {
 
         // 解码数据(此处忽略数据最后0~2字节)
         int index = 0;
-        for (int sepLoc = 0, encCnt = (len / 3) * 3; index < encCnt;) {
+        for (int sepLoc = 0, decCnt = (len / 3) * 3; index < decCnt;) {
             // 由4个有效字符装配到3个字节
             int i = DECODE_BYTES[chars[sIx++]] << 18 | DECODE_BYTES[chars[sIx++]] << 12 | DECODE_BYTES[chars[sIx++]] << 6 | DECODE_BYTES[chars[sIx++]];
-
             // 装配
             bytes[index++] = (byte) (i >> 16);
             bytes[index++] = (byte) (i >> 8);
@@ -91,4 +92,56 @@ public class Base64Helper {
     public static byte[] decode(String string) {
         return decode(string.toCharArray(), 0, string.length());
     }
+
+    public static String encode(byte[] bytes){
+
+        if(bytes==null || bytes.length==0){
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        // 编码数据(此处忽略数据最后0~2字节)
+        int index = 0 , srcLen = bytes.length;
+        for (int encCnt = (srcLen / 3) * 3; index < encCnt; ) {
+            int i = ((bytes[index++] << 16) & 0xff0000) | ((bytes[index++] << 8) & 0xff00) | (bytes[index++] & 0xff);
+            sb.append(ENCODE_CHARS[(i >> 18) & 0x3f]);
+            sb.append(ENCODE_CHARS[(i >> 12) & 0x3f]);
+            sb.append(ENCODE_CHARS[(i >> 6) & 0x3f]);
+            sb.append(ENCODE_CHARS[i & 0x3f]);
+        }
+        // 编码数据(最后0~2字节, 包括'=')
+        if (index < srcLen) {
+            //剩余解码字节个数, 补'='(字节)个数
+            int modCnt = srcLen - index, equCnt = 3 - modCnt;
+            int i = 0;
+            for (int j = 0; j < modCnt; j++)
+                i |= (bytes[index++] << (24 - j * 8)) & 0xff;
+            for (int j = 0; j <= modCnt; j++) {
+                sb.append(ENCODE_CHARS[(i >> (18 - j * 6)) & 0x3f]);
+            }
+            for (int j = 0; j < equCnt; j++) {
+                sb.append('=');
+            }
+//            for (int j = 0; j < modCnt; j++)
+//                i |= (bytes[index++] << (j * 8)) & 0xff;
+//            for (int j = 0; j < modCnt; j++) {
+//                sb.append(ENCODE_CHARS[(i >> (j * 6)) & 0x3f]);
+//            }
+//            for (int j = 0; j < equCnt; j++) {
+//                sb.append('=');
+//            }
+
+//            for (int j = 0; j < 4; j++) {
+//                //sb.append(ENCODE_CHARS[(i >> (j * 6)) & 0x3f]);
+//                int temp = (i >> (j * 6)) & 0x3f;
+//                if(temp==0)
+//                    sb.append('=');
+//                else
+//                    sb.append(ENCODE_CHARS[temp]);
+//            }
+        }
+
+        return sb.toString();
+    }
 }
+
