@@ -3,7 +3,7 @@ package base.util;
 import java.util.Arrays;
 
 /**
- * Created by Doing on 2016/5/18.
+ * Created by base on 2016/5/18.
  */
 public class Base64Helper {
 

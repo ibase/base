@@ -115,6 +115,20 @@ public class TestHelper {
         System.out.println(MD5Helper.getMD5OfString("123456", MD5Helper._CASE_UPPER));
     }
 
+    //PinyinUtil
+    @Test
+    public void testPinyin() {
+        System.out.println(PinyinUtil.words2Pinyin("这是什么"));
+
+        System.out.println(PinyinUtil.words2PinyinByUnicode("这是什么"));
+
+        System.out.println(PinyinUtil.word2Pinyin('我', true));//需要声调
+        System.out.println(PinyinUtil.word2Pinyin('我', false));
+
+        System.out.println(PinyinUtil.getWordsFirstLettersOfPinyin("我是",true));//需要大写
+        System.out.println(PinyinUtil.getWordsFirstLettersOfPinyin("我是",false));
+    }
+
     @Test
     public void testRandom() {
         //randomNumbers
@@ -126,6 +140,12 @@ public class TestHelper {
         System.out.println(RandomHelper.randomLetters(8, RandomHelper._CASE_ALL));       //QiJIYOBU
         System.out.println(RandomHelper.randomLetters(8, RandomHelper._CASE_LOWER));//zhyjwlnm
         System.out.println(RandomHelper.randomLetters(8, RandomHelper._CASE_UPPER));   //KWGENXLV
+
+        //createNumber
+        System.out.println(RandomHelper.createNumber(5, 18, RandomHelper._CASE_INC_INC));
+
+        //createCode
+        System.out.println(RandomHelper.createCode(10));
     }
 
     @Test

@@ -16,6 +16,7 @@
     <jackson.version>2.6.3</jackson.version>
     <fastjson.version>1.2.7</fastjson.version>
     <httpclient.version>4.5</httpclient.version>
+    <pinyin4j.version>2.5.0</pinyin4j.version>
   </properties>
 
   <dependencies>
@@ -52,5 +53,10 @@
       <version>1.10</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.belerweb</groupId>
+      <artifactId>pinyin4j</artifactId>
+      <version>2.5.0</version>
+    </dependency>
   </dependencies>
 </project>
